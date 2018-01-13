@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.handcoding.restapi.mapper.CodeMapper">
+	
+	<!-- 코드조회 -->
+	<select id="codeList" resultType="CodeVO" parameterType="Map">
+		select SQL_CALC_FOUND_ROWS * from code
+		where 1=1
+		<!-- 검색 -->
+		<if test="s.scope != null and s.keyword != null">
+			<choose>
+				<when test="s.scope.equals('all')">
+					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+						code like concat('%',  #{item}, '%') or
+						parentCode like concat('%',  #{item}, '%') or
+						descript like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+				<when test="s.scope.equals('code')">
+					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+						code like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+				<when test="s.scope.equals('parent')">
+					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+						parentCode like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+				<when test="s.scope.equals('descript')">
+					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+						descript like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+			</choose>
+		</if>
+		<!-- 정렬 -->
+		order by
+		<choose>
+			<when test="s.orderBy != null">
+				${s.orderBy}
+			</when>
+			<otherwise>
+				parentCode
+			</otherwise>
+		</choose>
+		<!-- 페이징 -->
+		<if test="p.limit != 0">
+			limit #{p.offset}, #{p.limit}
+		</if>
+	</select>
+	
+	<!-- 코드수정 -->
+	<update id="codeUpdate" parameterType="CodeVO">
+		update code
+		set code=code
+		<if test="newCode != null">
+			, code = #{newCode}
+		</if>
+		<if test="newParentCode != null">
+			, parentCode = #{newParentCode}
+		</if>
+		<if test="descript != null">
+			, descript = #{descript}
+		</if>
+		where code = #{code}
+		and parentCode = #{parentCode}
+	</update>
+	
+</mapper>
