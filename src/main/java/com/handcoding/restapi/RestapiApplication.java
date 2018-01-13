@@ -41,9 +41,7 @@ public class RestapiApplication {
 	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		Resource rsc = new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml");
 		Resource[] rsm = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
-		sessionFactory.setConfigLocation(rsc);
 		sessionFactory.setMapperLocations(rsm);
 		return sessionFactory.getObject();
 	}

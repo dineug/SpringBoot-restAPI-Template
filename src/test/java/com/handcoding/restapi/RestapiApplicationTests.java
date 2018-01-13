@@ -37,5 +37,5 @@ public class RestapiApplicationTests {
 	public void testSqlSession() throws Exception {
 		System.out.println("sqlSession: "+sqlSession);
 	}
-
+	
 }

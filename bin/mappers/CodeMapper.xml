@@ -3,7 +3,7 @@
 <mapper namespace="com.handcoding.restapi.mapper.CodeMapper">
 	
 	<!-- 코드조회 -->
-	<select id="codeList" resultType="CodeVO" parameterType="Map">
+	<select id="codeList" resultType="com.handcoding.restapi.domain.CodeVO" parameterType="Map">
 		select SQL_CALC_FOUND_ROWS * from code
 		where 1=1
 		<!-- 검색 -->
@@ -50,7 +50,7 @@
 	</select>
 	
 	<!-- 코드수정 -->
-	<update id="codeUpdate" parameterType="CodeVO">
+	<update id="codeUpdate" parameterType="com.handcoding.restapi.domain.CodeVO">
 		update code
 		set code=code
 		<if test="newCode != null">

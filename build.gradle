@@ -1,12 +1,14 @@
 buildscript {
 	ext {
 		springBootVersion = '1.5.9.RELEASE'
+		springCloudVersion = '1.2.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("io.spring.gradle:dependency-management-plugin:0.5.1.RELEAS")
 	}
 }
 
@@ -15,13 +17,14 @@ apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 
 group = 'com.handcoding.restapi'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.1'
 sourceCompatibility = 1.8
 
 jar {
-    manifest {
-        attributes  'Title': 'My Application', 'Version': 1.0, 'Main-Class': 'com.handcoding.restapi.RestapiApplication'
-    }
+	manifest {
+		attributes 'Title': 'My Application', 'Version': version, 'Main-Class': 'com.handcoding.restapi.RestapiApplication'
+	}
+	archiveName 'restapi.jar'
     dependsOn configurations.runtime
     from {
         configurations.compile.collect {it.isDirectory()? it: zipTree(it)}
