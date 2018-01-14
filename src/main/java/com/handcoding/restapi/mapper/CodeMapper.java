@@ -1,12 +1,12 @@
 package com.handcoding.restapi.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 
 import com.handcoding.restapi.domain.CodeVO;
+import com.handcoding.restapi.domain.SearchVO;
 
 /**
  * 코드 mapper
@@ -21,7 +21,7 @@ public interface CodeMapper {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CodeVO> codeList(Map<String, Object> map) throws Exception;
+	public List<CodeVO> codeList(SearchVO searchVO) throws Exception;
 	
 	/**
 	 * 코드생성

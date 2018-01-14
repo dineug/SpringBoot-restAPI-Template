@@ -3,7 +3,6 @@ package com.handcoding.restapi.service;
 import java.util.List;
 
 import com.handcoding.restapi.domain.CodeVO;
-import com.handcoding.restapi.domain.PagingVO;
 import com.handcoding.restapi.domain.SearchVO;
 
 /**
@@ -15,12 +14,11 @@ public interface CodeService {
 	
 	/**
 	 * 코드조회
-	 * @param p 페이징
-	 * @param s 검색
+	 * @param searchVO
 	 * @return
 	 * @throws Exception
 	 */
-	public List<CodeVO> codeList(PagingVO p, SearchVO s) throws Exception;
+	public List<CodeVO> codeList(SearchVO searchVO) throws Exception;
 	
 	/**
 	 * 코드생성

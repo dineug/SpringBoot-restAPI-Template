@@ -3,49 +3,40 @@
 <mapper namespace="com.handcoding.restapi.mapper.CodeMapper">
 	
 	<!-- 코드조회 -->
-	<select id="codeList" resultType="com.handcoding.restapi.domain.CodeVO" parameterType="Map">
+	<select id="codeList" resultType="com.handcoding.restapi.domain.CodeVO" parameterType="com.handcoding.restapi.domain.SearchVO">
 		select SQL_CALC_FOUND_ROWS * from code
 		where 1=1
 		<!-- 검색 -->
-		<if test="s.scope != null and s.keyword != null">
+		<if test="keyword != null">
 			<choose>
-				<when test="s.scope.equals('all')">
-					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+				<when test="scope.equals('all')">
+					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
 						code like concat('%',  #{item}, '%') or
 						parentCode like concat('%',  #{item}, '%') or
 						descript like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
-				<when test="s.scope.equals('code')">
-					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+				<when test="scope.equals('code')">
+					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
 						code like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
-				<when test="s.scope.equals('parent')">
-					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+				<when test="scope.equals('parent')">
+					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
 						parentCode like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
-				<when test="s.scope.equals('descript')">
-					<foreach collection="s.keyword.split(' ')" item="item" open="and" separator="or">
+				<when test="scope.equals('descript')">
+					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
 						descript like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
 			</choose>
 		</if>
-		<!-- 정렬 -->
-		order by
-		<choose>
-			<when test="s.orderBy != null">
-				${s.orderBy}
-			</when>
-			<otherwise>
-				parentCode
-			</otherwise>
-		</choose>
+		order by parentCode, code
 		<!-- 페이징 -->
-		<if test="p.limit != 0">
-			limit #{p.offset}, #{p.limit}
+		<if test="limit != 0">
+			limit #{offset}, #{limit}
 		</if>
 	</select>
 	

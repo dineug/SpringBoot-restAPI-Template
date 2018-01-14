@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.handcoding.restapi.domain.CodeVO;
-import com.handcoding.restapi.domain.PagingVO;
 import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.SearchVO;
 import com.handcoding.restapi.service.CodeService;
@@ -34,16 +33,15 @@ public class CodeController {
 	
 	/**
 	 * 코드조회
-	 * @param p 페이징
-	 * @param s 검색
+	 * @param searchVO
 	 * @return
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드조회")
 	@GetMapping
-	public ResponseVO<List<CodeVO>> codeList(PagingVO p, SearchVO s) throws Exception {
+	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) throws Exception {
 		ResponseVO<List<CodeVO>> responseVO = new ResponseVO<>();
-		List<CodeVO> codeList = codeService.codeList(p, s);
+		List<CodeVO> codeList = codeService.codeList(searchVO);
 		responseVO.setResponse(codeList);
 		if(codeList.size() == 0) {
 			responseVO.setCheck(false);

@@ -9,12 +9,30 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class SearchVO {
 	
+	@ApiModelProperty(value="페이징 시작값")
+	private int offset;
+	@ApiModelProperty(value="페이징 리스트 수")
+	private int limit;
+	
 	@ApiModelProperty(value="검색범위")
-	private String scope;
+	private String scope = "all";
 	@ApiModelProperty(value="검색 키워드")
 	private String keyword;
 	@ApiModelProperty(value="정렬 쿼리")
 	private String orderBy;
+	
+	public int getOffset() {
+		return offset > 0 ? offset : 0;
+	}
+	public void setOffset(int offset) {
+		this.offset = offset;
+	}
+	public int getLimit() {
+		return limit > 0 ? limit : 0;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
 	public String getScope() {
 		return scope;
 	}
@@ -35,6 +53,7 @@ public class SearchVO {
 	}
 	@Override
 	public String toString() {
-		return "SearchVO [scope=" + scope + ", keyword=" + keyword + ", orderBy=" + orderBy + "]";
+		return "SearchVO [offset=" + offset + ", limit=" + limit + ", scope=" + scope + ", keyword=" + keyword
+				+ ", orderBy=" + orderBy + "]";
 	}
 }

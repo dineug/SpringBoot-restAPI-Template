@@ -1,8 +1,6 @@
 package com.handcoding.restapi.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,7 +8,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.handcoding.restapi.domain.CodeVO;
-import com.handcoding.restapi.domain.PagingVO;
 import com.handcoding.restapi.domain.SearchVO;
 import com.handcoding.restapi.mapper.CodeMapper;
 import com.handcoding.restapi.mapper.CommonMapper;
@@ -27,16 +24,13 @@ public class CodeServiceImpl implements CodeService {
 	
 	// 코드 조회
 	@Override
-	public List<CodeVO> codeList(PagingVO p, SearchVO s) throws Exception {
-		Map<String, Object> map = new HashMap<>();
-		map.put("p", p);
-		map.put("s", s);
-		List<CodeVO> list = codeMapper.codeList(map);
+	public List<CodeVO> codeList(SearchVO searchVO) throws Exception {
+		List<CodeVO> codeList = codeMapper.codeList(searchVO);
 		int total = commonMapper.pagingTotal();
-		for (CodeVO codeVO : list) {
+		for (CodeVO codeVO : codeList) {
 			codeVO.setTotal(total);
 		}
-		return list;
+		return codeList;
 	}
 	
 	// 코드생성
