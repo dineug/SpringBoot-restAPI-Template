@@ -50,6 +50,7 @@ public class CodeServiceImpl implements CodeService {
 	
 	// 코드삭제
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
 	public boolean codeDelete(CodeVO codeVO) throws Exception {
 		int check = codeMapper.codeDelete(codeVO);
 		return check > 0;

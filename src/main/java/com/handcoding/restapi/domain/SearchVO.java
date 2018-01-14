@@ -1,5 +1,7 @@
 package com.handcoding.restapi.domain;
 
+import java.util.Date;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
@@ -18,8 +20,13 @@ public class SearchVO {
 	private String scope = "all";
 	@ApiModelProperty(value="검색 키워드")
 	private String keyword;
-	@ApiModelProperty(value="정렬 쿼리")
+	@ApiModelProperty(value="정렬")
 	private String orderBy;
+	
+	@ApiModelProperty(value="기간조회 시작날짜")
+	private Date startDate;
+	@ApiModelProperty(value="기간조회 마지막날짜")
+	private Date lastDate;
 	
 	public int getOffset() {
 		return offset > 0 ? offset : 0;
@@ -51,9 +58,21 @@ public class SearchVO {
 	public void setOrderBy(String orderBy) {
 		this.orderBy = orderBy;
 	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public Date getLastDate() {
+		return lastDate;
+	}
+	public void setLastDate(Date lastDate) {
+		this.lastDate = lastDate;
+	}
 	@Override
 	public String toString() {
 		return "SearchVO [offset=" + offset + ", limit=" + limit + ", scope=" + scope + ", keyword=" + keyword
-				+ ", orderBy=" + orderBy + "]";
+				+ ", orderBy=" + orderBy + ", startDate=" + startDate + ", lastDate=" + lastDate + "]";
 	}
 }
