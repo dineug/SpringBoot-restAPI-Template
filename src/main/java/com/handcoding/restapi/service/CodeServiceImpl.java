@@ -35,14 +35,14 @@ public class CodeServiceImpl implements CodeService {
 	
 	// 코드생성
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public void codeInsert(CodeVO codeVO) throws Exception {
 		codeMapper.codeInsert(codeVO);
 	}
 	
 	// 코드수정
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeUpdate(CodeVO codeVO) throws Exception {
 		int check = codeMapper.codeUpdate(codeVO);
 		return check > 0;
@@ -50,7 +50,7 @@ public class CodeServiceImpl implements CodeService {
 	
 	// 코드삭제
 	@Override
-	@Transactional(propagation=Propagation.REQUIRED, readOnly=false)
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeDelete(CodeVO codeVO) throws Exception {
 		int check = codeMapper.codeDelete(codeVO);
 		return check > 0;
