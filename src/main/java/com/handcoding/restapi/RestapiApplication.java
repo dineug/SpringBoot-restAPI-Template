@@ -58,13 +58,12 @@ public class RestapiApplication {
 	}
 	
 	/**
-	 * filter 설정
+	 * AccessLog filter 설정
 	 * @return
 	 */
 	@Bean
-	public FilterRegistrationBean getFilterRegistrationBean() {
+	public FilterRegistrationBean accessLogFilterBean() {
 		FilterRegistrationBean registrationBean = new FilterRegistrationBean(new AccessLogFilter());
-		registrationBean.addUrlPatterns("/*");
 		return registrationBean;
 	}
 	
