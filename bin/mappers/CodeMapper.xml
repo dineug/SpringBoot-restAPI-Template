@@ -21,7 +21,7 @@
 						code like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
-				<when test="scope.equals('parent')">
+				<when test="scope.equals('parentCode')">
 					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
 						parentCode like concat('%',  #{item}, '%')
 					</foreach>
@@ -33,7 +33,16 @@
 				</when>
 			</choose>
 		</if>
-		order by parentCode, code
+		<!-- 정렬 -->
+		order by
+		<choose>
+			<when test="orderBy != null and orderBy.equals('desc')">
+				parentCode desc, code desc
+			</when>
+			<otherwise>
+				parentCode, code
+			</otherwise>
+		</choose>
 		<!-- 페이징 -->
 		<if test="limit != 0">
 			limit #{offset}, #{limit}

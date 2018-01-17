@@ -20,12 +20,12 @@ import com.handcoding.restapi.service.CodeService;
 import io.swagger.annotations.ApiOperation;
 
 /**
- * 코드 API
+ * 코드 리소스 API
  * @author 이승환
- * @version 2018.01.13 v1.0
+ * @version 2018.01.17 v1.1
  */
 @RestController
-@RequestMapping("/admin/codes")
+@RequestMapping("/admin")
 public class CodeController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class CodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드조회")
-	@GetMapping
+	@GetMapping("/v1.0/codes")
 	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) throws Exception {
 		ResponseVO<List<CodeVO>> responseVO = new ResponseVO<>();
 		List<CodeVO> codeList = codeService.codeList(searchVO);
@@ -56,7 +56,7 @@ public class CodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드생성")
-	@PostMapping
+	@PostMapping("/v1.0/codes")
 	public ResponseVO<Object> codeInsert(@RequestBody CodeVO codeVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		codeService.codeInsert(codeVO);
@@ -71,7 +71,7 @@ public class CodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드수정")
-	@PutMapping("/{code}")
+	@PutMapping("/v1.0/codes/{code}")
 	public ResponseVO<Object> codeUpdate(@RequestBody CodeVO codeVO, @PathVariable String code) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		codeVO.setCode(code);
@@ -87,7 +87,7 @@ public class CodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드삭제")
-	@DeleteMapping("/{code}")
+	@DeleteMapping("/v1.0/codes/{code}")
 	public ResponseVO<Object> codeDelete(CodeVO codeVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		boolean check = codeService.codeDelete(codeVO);
