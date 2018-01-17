@@ -44,16 +44,16 @@ public class CodeServiceImpl implements CodeService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeUpdate(CodeVO codeVO) throws Exception {
-		int check = codeMapper.codeUpdate(codeVO);
-		return check > 0;
+		int checkNum = codeMapper.codeUpdate(codeVO);
+		return checkNum > 0;
 	}
 	
 	// 코드삭제
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeDelete(CodeVO codeVO) throws Exception {
-		int check = codeMapper.codeDelete(codeVO);
-		return check > 0;
+		int checkNum = codeMapper.codeDelete(codeVO);
+		return checkNum > 0;
 	}
 	
 }
