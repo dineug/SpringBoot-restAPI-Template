@@ -10,24 +10,24 @@
 		<if test="keyword != null">
 			<choose>
 				<when test="scope.equals('all')">
-					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
 						code like concat('%',  #{item}, '%') or
 						parentCode like concat('%',  #{item}, '%') or
 						descript like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
 				<when test="scope.equals('code')">
-					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
 						code like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
 				<when test="scope.equals('parentCode')">
-					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
 						parentCode like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
 				<when test="scope.equals('descript')">
-					<foreach collection="keyword.split(' ')" item="item" open="and" separator="or">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
 						descript like concat('%',  #{item}, '%')
 					</foreach>
 				</when>
