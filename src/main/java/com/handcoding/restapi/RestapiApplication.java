@@ -1,16 +1,10 @@
 package com.handcoding.restapi;
 
-import javax.sql.DataSource;
-
-import org.apache.ibatis.session.SqlSessionFactory;
-import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.handcoding.restapi.bean.AccessLogFilter;
@@ -30,22 +24,7 @@ public class RestapiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(RestapiApplication.class, args);
 	}
-
-	/**
-	 * SqlSessionFactory 설정
-	 * @param dataSource
-	 * @return
-	 * @throws Exception
-	 */
-	@Bean
-	public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
-		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
-		sessionFactory.setDataSource(dataSource);
-		Resource[] rsm = new PathMatchingResourcePatternResolver().getResources("classpath:mappers/*Mapper.xml");
-		sessionFactory.setMapperLocations(rsm);
-		return sessionFactory.getObject();
-	}
-
+	
 	/**
 	 * swagger 설정
 	 * @return
