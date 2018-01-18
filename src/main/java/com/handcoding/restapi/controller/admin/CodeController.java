@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.SearchVO;
+import com.handcoding.restapi.domain.in.InCodeUpdateVO;
 import com.handcoding.restapi.service.CodeService;
 
 import io.swagger.annotations.ApiOperation;
@@ -72,10 +73,10 @@ public class CodeController {
 	 */
 	@ApiOperation(value="", notes = "코드수정")
 	@PutMapping("/v1.0/codes/{code}")
-	public ResponseVO<Object> codeUpdate(@RequestBody CodeVO codeVO, @PathVariable String code) throws Exception {
+	public ResponseVO<Object> codeUpdate(@RequestBody InCodeUpdateVO inCodeUpdateVO, @PathVariable String code) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
-		codeVO.setCode(code);
-		boolean check = codeService.codeUpdate(codeVO);
+		inCodeUpdateVO.setCode(code);
+		boolean check = codeService.codeUpdate(inCodeUpdateVO);
 		responseVO.setCheck(check);
 		return responseVO;
 	}

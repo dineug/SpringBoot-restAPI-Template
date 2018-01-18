@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.SearchVO;
+import com.handcoding.restapi.domain.in.InCodeUpdateVO;
 import com.handcoding.restapi.mapper.CodeMapper;
 import com.handcoding.restapi.mapper.CommonMapper;
 
@@ -26,6 +27,7 @@ public class CodeServiceImpl implements CodeService {
 	@Override
 	public List<CodeVO> codeList(SearchVO searchVO) throws Exception {
 		List<CodeVO> codeList = codeMapper.codeList(searchVO);
+		// 페이징 total값 세팅
 		int total = commonMapper.pagingTotal();
 		for (CodeVO codeVO : codeList) {
 			codeVO.setTotal(total);
@@ -43,8 +45,8 @@ public class CodeServiceImpl implements CodeService {
 	// 코드수정
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
-	public boolean codeUpdate(CodeVO codeVO) throws Exception {
-		int checkNum = codeMapper.codeUpdate(codeVO);
+	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception {
+		int checkNum = codeMapper.codeUpdate(inCodeUpdateVO);
 		return checkNum > 0;
 	}
 	

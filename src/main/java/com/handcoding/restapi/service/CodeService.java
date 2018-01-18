@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.SearchVO;
+import com.handcoding.restapi.domain.in.InCodeUpdateVO;
 
 /**
  * 코드 서비스
@@ -29,11 +30,11 @@ public interface CodeService {
 	
 	/**
 	 * 코드수정
-	 * @param codeVO
+	 * @param inCodeUpdateVO
 	 * @return 성공여부
 	 * @throws Exception
 	 */
-	public boolean codeUpdate(CodeVO codeVO) throws Exception;
+	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception;
 	
 	/**
 	 * 코드삭제

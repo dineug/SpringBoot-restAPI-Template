@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.SearchVO;
+import com.handcoding.restapi.domain.in.InCodeUpdateVO;
 
 /**
  * 코드 mapper
@@ -37,7 +38,7 @@ public interface CodeMapper {
 	 * @return 업데이트 갯수
 	 * @throws Exception
 	 */
-	public int codeUpdate(CodeVO codeVO) throws Exception;
+	public int codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception;
 	
 	/**
 	 * 코드삭제
