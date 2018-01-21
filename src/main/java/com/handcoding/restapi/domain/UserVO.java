@@ -15,7 +15,7 @@ public class UserVO extends CommonVO {
 	@ApiModelProperty(value="이메일")
 	private String email;
 	@ApiModelProperty(value="사용자 타입")
-	private String typeCode;
+	private String userTypeCode;
 	@ApiModelProperty(value="사용자 상태")
 	private String statusCode;
 	@ApiModelProperty(value="생성일")
@@ -44,11 +44,11 @@ public class UserVO extends CommonVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getTypeCode() {
-		return typeCode;
+	public String getUserTypeCode() {
+		return userTypeCode;
 	}
-	public void setTypeCode(String typeCode) {
-		this.typeCode = typeCode;
+	public void setUserTypeCode(String userTypeCode) {
+		this.userTypeCode = userTypeCode;
 	}
 	public String getStatusCode() {
 		return statusCode;
@@ -64,7 +64,7 @@ public class UserVO extends CommonVO {
 	}
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", typeCode=" + typeCode
-				+ ", statusCode=" + statusCode + ", regDate=" + regDate + "]";
+		return "UserVO [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", userTypeCode="
+				+ userTypeCode + ", statusCode=" + statusCode + ", regDate=" + regDate + "]";
 	}
 }
