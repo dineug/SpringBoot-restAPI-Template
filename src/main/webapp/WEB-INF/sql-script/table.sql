@@ -29,16 +29,16 @@ ALTER TABLE `user`
 			`id`
 		);
         
-CREATE TABLE `emailConfirm` (
-	`key`			VARCHAR(255) NOT NULL COMMENT '키값',
+CREATE TABLE `email_confirm` (
+	`emailKey`		VARCHAR(255) NOT NULL COMMENT '키값',
 	`id`			VARCHAR(20)  NOT NULL COMMENT 'ID',    
 	`userTypeCode`	CHAR(20)      NOT NULL COMMENT '사용자타입code',
 	`regDate`		DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'now()',
-	`limitDate`		DATETIME     NOT NULL COMMENT '유효하기까지의 날짜'
+	`expiredDate`	DATETIME     NOT NULL COMMENT '유효하기까지의 날짜'
 );
 
-ALTER TABLE `emailConfirm`
+ALTER TABLE `email_confirm`
 	ADD CONSTRAINT
 		PRIMARY KEY (
-			`key`
+			`emailKey`
 		);

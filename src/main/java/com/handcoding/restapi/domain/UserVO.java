@@ -15,11 +15,12 @@ public class UserVO extends CommonVO {
 	@ApiModelProperty(value="이메일")
 	private String email;
 	@ApiModelProperty(value="사용자 타입")
-	private String userTypeCode;
+	private String userTypeCode = "NORMAL";
 	@ApiModelProperty(value="사용자 상태")
-	private String statusCode;
+	private String statusCode = "EMAIL_CONFIRM";
 	@ApiModelProperty(value="생성일")
 	private Date regDate;
+	
 	public String getId() {
 		return id;
 	}
@@ -47,14 +48,62 @@ public class UserVO extends CommonVO {
 	public String getUserTypeCode() {
 		return userTypeCode;
 	}
+	/**
+	 * code : 0 - 사용자 default<br>
+	 * code : 1 - 관리자<br>
+	 * @return code
+	 */
+	public int getUserTypeCodeInt() {
+		int code = 0;
+		if(userTypeCode.equals("NORMAL")) {
+			code = 0;
+		}else if(userTypeCode.equals("ADMIN")) {
+			code = 1;
+		}
+		return code;
+	}
 	public void setUserTypeCode(String userTypeCode) {
 		this.userTypeCode = userTypeCode;
+	}
+	/**
+	 * code : 0 - 사용자 default<br>
+	 * code : 1 - 관리자<br>
+	 * @param code
+	 */
+	public void setUserTypeCode(int code) {
+		switch (code) {
+		case 0:
+			this.userTypeCode = "NORMAL";
+			break;
+		case 1:
+			this.userTypeCode = "ADMIN";
+			break;
+		}
 	}
 	public String getStatusCode() {
 		return statusCode;
 	}
 	public void setStatusCode(String statusCode) {
 		this.statusCode = statusCode;
+	}
+	/**
+	 * code : 0 - 이메일인증대기 default<br>
+	 * code : 1 - 사용가능<br>
+	 * code : 2 - 탈퇴<br>
+	 * @param code
+	 */
+	public void setStatusCode(int code) {
+		switch (code) {
+		case 0:
+			this.statusCode = "EMAIL_CONFIRM";
+			break;
+		case 1:
+			this.statusCode = "USE";
+			break;
+		case 2:
+			this.statusCode = "LEAVE";
+			break;
+		}
 	}
 	public Date getRegDate() {
 		return regDate;
@@ -64,7 +113,7 @@ public class UserVO extends CommonVO {
 	}
 	@Override
 	public String toString() {
-		return "UserVO [id=" + id + ", pw=" + pw + ", name=" + name + ", email=" + email + ", userTypeCode="
+		return "UserVO [id=" + id + ", name=" + name + ", email=" + email + ", userTypeCode="
 				+ userTypeCode + ", statusCode=" + statusCode + ", regDate=" + regDate + "]";
 	}
 }

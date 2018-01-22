@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
  */
 public class ResponseVO<T> {
 	
-	@ApiModelProperty(value="상태코드")
+	@ApiModelProperty(value="코드")
 	private int code = 200;
 	@ApiModelProperty(value="메세지")
 	private String message;

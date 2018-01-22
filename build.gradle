@@ -52,6 +52,8 @@ dependencies {
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')
 	compile('io.swagger:swagger-jersey2-jaxrs:1.5.17')
+	// mail
+	compile("org.springframework.boot:spring-boot-starter-mail")
 	
 	compile('org.apache.commons:commons-lang3:3.7')
 }
