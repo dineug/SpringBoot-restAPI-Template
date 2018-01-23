@@ -37,8 +37,6 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 		userSignUpMapper.emailConfirmInsert(emailConfirmVO);
 		
 		InEmailConfirmSendVO inEmailConfirmSendVO = new InEmailConfirmSendVO();
-		inEmailConfirmSendVO.setId(inUserSignUpVO.getId());
-		inEmailConfirmSendVO.setUserTypeCode(inUserSignUpVO.getUserTypeCodeInt());
 		inEmailConfirmSendVO.setEmail(inUserSignUpVO.getEmail());
 		inEmailConfirmSendVO.setEmailKey(key);
 		inEmailConfirmSendVO.setEmailConfirmUrl(inUserSignUpVO.getEmailConfirmUrl());

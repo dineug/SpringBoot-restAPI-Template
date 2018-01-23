@@ -34,6 +34,9 @@ public class HandlerAsync {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 		
+		if(inEmailConfirmSendVO.getFrom() != null) {
+			messageHelper.setFrom(inEmailConfirmSendVO.getFrom());
+		}
 		messageHelper.setTo(inEmailConfirmSendVO.getEmail());
 		messageHelper.setSubject("회원가입");
         StringBuffer sb = new StringBuffer();
@@ -41,10 +44,6 @@ public class HandlerAsync {
         	.append(inEmailConfirmSendVO.getEmailConfirmUrl())
         	.append("?emailKey=")
         	.append(inEmailConfirmSendVO.getEmailKey())
-        	.append("&id=")
-        	.append(inEmailConfirmSendVO.getId())
-        	.append("&userTypeCode=")
-        	.append(inEmailConfirmSendVO.getUserTypeCodeInt())
         	.append("'>이메일인증</a>");
         messageHelper.setText(sb.toString(), true);
         

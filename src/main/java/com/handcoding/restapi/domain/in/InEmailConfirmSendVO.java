@@ -10,6 +10,8 @@ public class InEmailConfirmSendVO extends EmailConfirmVO {
 	private String email;
 	@ApiModelProperty(value="이메일인증 URL")
 	private String emailConfirmUrl;
+	@ApiModelProperty(value="보내는 이메일")
+	private String from;
 	
 	public String getEmail() {
 		return email;
@@ -23,8 +25,14 @@ public class InEmailConfirmSendVO extends EmailConfirmVO {
 	public void setEmailConfirmUrl(String emailConfirmUrl) {
 		this.emailConfirmUrl = emailConfirmUrl;
 	}
+	public String getFrom() {
+		return from;
+	}
+	public void setFrom(String from) {
+		this.from = from;
+	}
 	@Override
 	public String toString() {
-		return "InEmailConfirmSendVO [email=" + email + ", emailConfirmUrl=" + emailConfirmUrl + "]";
+		return "InEmailConfirmSendVO [email=" + email + ", emailConfirmUrl=" + emailConfirmUrl + ", from=" + from + "]";
 	}
 }
