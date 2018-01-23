@@ -34,9 +34,6 @@ public class HandlerAsync {
 		MimeMessage message = mailSender.createMimeMessage();
 		MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 		
-		if(inEmailConfirmSendVO.getFrom() != null) {
-			messageHelper.setFrom(inEmailConfirmSendVO.getFrom());
-		}
 		messageHelper.setTo(inEmailConfirmSendVO.getEmail());
 		messageHelper.setSubject("회원가입");
         StringBuffer sb = new StringBuffer();
