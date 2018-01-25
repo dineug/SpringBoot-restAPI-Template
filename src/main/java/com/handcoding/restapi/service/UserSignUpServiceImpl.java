@@ -58,6 +58,8 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 			responseVO.setCheck(check);
 			checkNum = mapper.getUserSignUpMapper().emailConfirmKeyCheck(emailConfirmVO);
 			responseVO.setCode(checkNum);
+		}else {
+			mapper.getUserSignUpMapper().emailConfirmKeyDelete(emailConfirmVO);
 		}
 		return responseVO;
 	}

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @version 2018.01.13 v1.0
  */
 @Controller
-public class CommonController {
+public class PageController {
 	
 	@GetMapping("/")
 	public String swagger() throws Exception {

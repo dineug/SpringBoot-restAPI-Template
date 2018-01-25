@@ -1,5 +1,6 @@
 package com.handcoding.restapi.mapper;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -49,5 +50,13 @@ public interface UserSignUpMapper {
 	 */
 	@Select("select count(*) from email_confirm where emailKey = #{emailKey}")
 	public int emailConfirmKeyCheck(EmailConfirmVO emailConfirmVO);
+	
+	/**
+	 * 이메일 인증키 삭제
+	 * @param emailConfirmVO
+	 * @return
+	 */
+	@Delete("delete from email_confirm where emailKey = #{emailKey}")
+	public int emailConfirmKeyDelete(EmailConfirmVO emailConfirmVO);
 	
 }
