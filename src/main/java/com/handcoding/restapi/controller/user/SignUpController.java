@@ -54,7 +54,7 @@ public class SignUpController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "기본사용자 이메일인증")
-	@PutMapping("/v1.0/users")
+	@PutMapping("/v1.0/users/emailconfirm")
 	public ResponseVO<Object> emailConfirm(Locale locale, @RequestBody EmailConfirmVO emailConfirmVO) throws Exception {
 		ResponseVO<Object> responseVO = null;
 		String message = null;
