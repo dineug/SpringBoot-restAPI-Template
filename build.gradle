@@ -54,6 +54,8 @@ dependencies {
 	compile('io.swagger:swagger-jersey2-jaxrs:1.5.17')
 	// mail
 	compile("org.springframework.boot:spring-boot-starter-mail")
+	// messages
+	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	
 	compile('org.apache.commons:commons-lang3:3.7')
 }

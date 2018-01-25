@@ -1,4 +1,4 @@
-package com.handcoding.restapi.bean;
+package com.handcoding.restapi.filter;
 
 import java.io.IOException;
 

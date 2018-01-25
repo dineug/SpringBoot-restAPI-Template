@@ -7,28 +7,24 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.handcoding.restapi.component.MapperComponent;
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.SearchVO;
 import com.handcoding.restapi.domain.in.InCodeUpdateVO;
-import com.handcoding.restapi.mapper.CodeMapper;
-import com.handcoding.restapi.mapper.CommonMapper;
 
 @Service
 @Transactional(propagation=Propagation.SUPPORTS, readOnly=true)
 public class CodeServiceImpl implements CodeService {
 	
 	@Autowired
-	private CodeMapper codeMapper;
-	
-	@Autowired
-	private CommonMapper commonMapper;
+	private MapperComponent mapper;
 	
 	// 코드 조회
 	@Override
 	public List<CodeVO> codeList(SearchVO searchVO) throws Exception {
-		List<CodeVO> codeList = codeMapper.codeList(searchVO);
+		List<CodeVO> codeList = mapper.getCodeMapper().codeList(searchVO);
 		// 페이징 total값 세팅
-		int total = commonMapper.pagingTotal();
+		int total = mapper.getCommonMapper().pagingTotal();
 		for (CodeVO codeVO : codeList) {
 			codeVO.setTotal(total);
 		}
@@ -39,14 +35,14 @@ public class CodeServiceImpl implements CodeService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public void codeInsert(CodeVO codeVO) throws Exception {
-		codeMapper.codeInsert(codeVO);
+		mapper.getCodeMapper().codeInsert(codeVO);
 	}
 	
 	// 코드수정
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception {
-		int checkNum = codeMapper.codeUpdate(inCodeUpdateVO);
+		int checkNum = mapper.getCodeMapper().codeUpdate(inCodeUpdateVO);
 		return checkNum > 0;
 	}
 	
@@ -54,7 +50,7 @@ public class CodeServiceImpl implements CodeService {
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public boolean codeDelete(CodeVO codeVO) throws Exception {
-		int checkNum = codeMapper.codeDelete(codeVO);
+		int checkNum = mapper.getCodeMapper().codeDelete(codeVO);
 		return checkNum > 0;
 	}
 	

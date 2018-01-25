@@ -1,5 +1,7 @@
 package com.handcoding.restapi.service;
 
+import com.handcoding.restapi.domain.EmailConfirmVO;
+import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.in.InUserSignUpVO;
 
 /**
@@ -14,5 +16,12 @@ public interface UserSignUpService {
 	 * @param inUserSignUpVO
 	 */
 	public void userSignUpEmail(InUserSignUpVO inUserSignUpVO) throws Exception;
+	
+	/**
+	 * 이메일 인증
+	 * @param emailConfirmVO
+	 * @return
+	 */
+	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO) throws Exception;
 	
 }

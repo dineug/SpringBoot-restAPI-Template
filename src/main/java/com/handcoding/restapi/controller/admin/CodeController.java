@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.handcoding.restapi.component.ServiceComponent;
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.SearchVO;
 import com.handcoding.restapi.domain.in.InCodeUpdateVO;
-import com.handcoding.restapi.service.CodeService;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -30,7 +30,7 @@ import io.swagger.annotations.ApiOperation;
 public class CodeController {
 	
 	@Autowired
-	private CodeService codeService;
+	private ServiceComponent service;
 	
 	/**
 	 * 코드조회
@@ -42,7 +42,7 @@ public class CodeController {
 	@GetMapping("/v1.0/codes")
 	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) throws Exception {
 		ResponseVO<List<CodeVO>> responseVO = new ResponseVO<>();
-		List<CodeVO> codeList = codeService.codeList(searchVO);
+		List<CodeVO> codeList = service.getCodeService().codeList(searchVO);
 		responseVO.setResponse(codeList);
 		if(codeList.size() == 0) {
 			responseVO.setCheck(false);
@@ -60,7 +60,7 @@ public class CodeController {
 	@PostMapping("/v1.0/codes")
 	public ResponseVO<Object> codeInsert(@RequestBody CodeVO codeVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
-		codeService.codeInsert(codeVO);
+		service.getCodeService().codeInsert(codeVO);
 		return responseVO;
 	}
 	
@@ -76,7 +76,7 @@ public class CodeController {
 	public ResponseVO<Object> codeUpdate(@RequestBody InCodeUpdateVO inCodeUpdateVO, @PathVariable String code) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		inCodeUpdateVO.setCode(code);
-		boolean check = codeService.codeUpdate(inCodeUpdateVO);
+		boolean check = service.getCodeService().codeUpdate(inCodeUpdateVO);
 		responseVO.setCheck(check);
 		return responseVO;
 	}
@@ -91,7 +91,7 @@ public class CodeController {
 	@DeleteMapping("/v1.0/codes/{code}")
 	public ResponseVO<Object> codeDelete(CodeVO codeVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
-		boolean check = codeService.codeDelete(codeVO);
+		boolean check = service.getCodeService().codeDelete(codeVO);
 		responseVO.setCheck(check);
 		return responseVO;
 	}

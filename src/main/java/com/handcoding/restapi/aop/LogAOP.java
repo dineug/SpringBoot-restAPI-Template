@@ -1,4 +1,4 @@
-package com.handcoding.restapi.bean;
+package com.handcoding.restapi.aop;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
