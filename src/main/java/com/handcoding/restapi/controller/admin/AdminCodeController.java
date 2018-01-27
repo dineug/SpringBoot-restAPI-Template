@@ -27,7 +27,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/admin")
-public class CodeController {
+public class AdminCodeController {
 	
 	@Autowired
 	private ServiceComponent service;

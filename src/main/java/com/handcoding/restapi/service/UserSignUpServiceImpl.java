@@ -50,15 +50,19 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 	
 	// 이메일 인증
 	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
 	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
+		// 사용자 상태값 변경
 		int checkNum = mapper.getUserSignUpMapper().emailConfirmUpdate(emailConfirmVO);
 		boolean check = checkNum > 0;
 		if(!check) {
 			responseVO.setCheck(check);
+			// 실패 이유 체크
 			checkNum = mapper.getUserSignUpMapper().emailConfirmKeyCheck(emailConfirmVO);
 			responseVO.setCode(checkNum);
 		}else {
+			// 성공시 키 삭제
 			mapper.getUserSignUpMapper().emailConfirmKeyDelete(emailConfirmVO);
 		}
 		return responseVO;

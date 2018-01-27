@@ -22,7 +22,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/system")
-public class SignUpController {
+public class SystemSignUpController {
 	
 	@Autowired
 	private CommonComponent common;

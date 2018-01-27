@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @RequestMapping("/normal")
-public class SignUpController {
+public class UserSignUpController {
 	
 	@Autowired
 	private ServiceComponent service;
