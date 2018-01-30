@@ -21,7 +21,7 @@ public class CodeServiceImpl implements CodeService {
 	
 	// 코드 조회
 	@Override
-	public List<CodeVO> codeList(SearchVO searchVO) throws Exception {
+	public List<CodeVO> codeList(SearchVO searchVO) {
 		List<CodeVO> codeList = mapper.getCodeMapper().codeList(searchVO);
 		// 페이징 total값 세팅
 		int total = mapper.getCommonMapper().pagingTotal();
@@ -34,14 +34,14 @@ public class CodeServiceImpl implements CodeService {
 	// 코드생성
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
-	public void codeInsert(CodeVO codeVO) throws Exception {
+	public void codeInsert(CodeVO codeVO) {
 		mapper.getCodeMapper().codeInsert(codeVO);
 	}
 	
 	// 코드수정
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
-	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception {
+	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) {
 		int checkNum = mapper.getCodeMapper().codeUpdate(inCodeUpdateVO);
 		return checkNum > 0;
 	}
@@ -49,7 +49,7 @@ public class CodeServiceImpl implements CodeService {
 	// 코드삭제
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
-	public boolean codeDelete(CodeVO codeVO) throws Exception {
+	public boolean codeDelete(CodeVO codeVO) {
 		int checkNum = mapper.getCodeMapper().codeDelete(codeVO);
 		return checkNum > 0;
 	}

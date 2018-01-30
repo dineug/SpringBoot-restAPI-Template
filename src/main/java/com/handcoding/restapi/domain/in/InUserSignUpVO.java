@@ -6,6 +6,8 @@ import io.swagger.annotations.ApiModelProperty;
 
 public class InUserSignUpVO extends UserVO {
 	
+	private static final long serialVersionUID = 1L;
+	
 	@ApiModelProperty(value="이메일인증 URL")
 	private String emailConfirmUrl;
 	

@@ -14,6 +14,7 @@ public interface UserSignUpService {
 	/**
 	 * 회원가입 및 이메일 인증메일 발송
 	 * @param inUserSignUpVO
+	 * @throws Exception 
 	 */
 	public void userSignUpEmail(InUserSignUpVO inUserSignUpVO) throws Exception;
 	
@@ -22,6 +23,6 @@ public interface UserSignUpService {
 	 * @param emailConfirmVO
 	 * @return
 	 */
-	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO) throws Exception;
+	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO);
 	
 }

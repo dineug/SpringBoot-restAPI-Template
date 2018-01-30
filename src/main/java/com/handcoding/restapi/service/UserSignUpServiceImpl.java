@@ -36,7 +36,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 		String key = tempKey.getKey(50);
 		EmailConfirmVO emailConfirmVO = new EmailConfirmVO();
 		emailConfirmVO.setId(inUserSignUpVO.getId());
-		emailConfirmVO.setUserTypeCode(inUserSignUpVO.getUserTypeCodeInt());
+		emailConfirmVO.setUserTypeCode(inUserSignUpVO.getUserTypeCode());
 		emailConfirmVO.setEmailKey(key);
 		mapper.getUserSignUpMapper().emailConfirmInsert(emailConfirmVO);
 		
@@ -51,7 +51,7 @@ public class UserSignUpServiceImpl implements UserSignUpService {
 	// 이메일 인증
 	@Override
 	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
-	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO) throws Exception {
+	public ResponseVO<Object> userEmailConfirm(EmailConfirmVO emailConfirmVO) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		// 사용자 상태값 변경
 		int checkNum = mapper.getUserSignUpMapper().emailConfirmUpdate(emailConfirmVO);

@@ -56,6 +56,8 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-mail")
 	// messages
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+	// redis
+	compile("org.springframework.boot:spring-boot-starter-data-redis")
 	
 	compile('org.apache.commons:commons-lang3:3.7')
 }

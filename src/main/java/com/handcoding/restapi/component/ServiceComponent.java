@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.handcoding.restapi.service.CodeService;
+import com.handcoding.restapi.service.UserLoginService;
 import com.handcoding.restapi.service.UserSignUpService;
 
 /**
@@ -18,7 +19,8 @@ public class ServiceComponent {
 	private CodeService codeService;
 	@Autowired
 	private UserSignUpService userSignUpService;
-	
+	@Autowired
+	private UserLoginService userLoginService;
 	
 	
 	public CodeService getCodeService() {
@@ -26,6 +28,9 @@ public class ServiceComponent {
 	}
 	public UserSignUpService getUserSignUpService() {
 		return userSignUpService;
+	}
+	public UserLoginService getUserLoginService() {
+		return userLoginService;
 	}
 	
 }

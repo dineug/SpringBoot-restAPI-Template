@@ -17,25 +17,25 @@ public class RestapiApplicationTests {
 
 	@Autowired
 	private DataSource ds;
-	
+
 	@Autowired
 	private SqlSessionFactory sqlSession;
-	
+
 	@Test
 	public void contextLoads() {
 	}
-	
+
 	@Test
 	public void testConnection() throws Exception {
-		System.out.println("ds: "+ds);
+		System.out.println("ds: " + ds);
 		Connection conn = ds.getConnection();
-		System.out.println("conn: "+conn);
+		System.out.println("conn: " + conn);
 		conn.close();
 	}
-	
+
 	@Test
 	public void testSqlSession() throws Exception {
-		System.out.println("sqlSession: "+sqlSession);
+		System.out.println("sqlSession: " + sqlSession);
 	}
-	
+
 }

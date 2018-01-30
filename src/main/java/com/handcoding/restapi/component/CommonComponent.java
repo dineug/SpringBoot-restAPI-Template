@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 import com.handcoding.restapi.bean.EnvironmentConfig;
 import com.handcoding.restapi.bean.HandlerAsync;
+import com.handcoding.restapi.bean.HandlerToken;
 
 /**
  * 공통 컴포넌트
@@ -24,7 +25,8 @@ public class CommonComponent {
 	private MessageSource msg;
 	@Autowired
 	private EnvironmentConfig config;
-	
+	@Autowired
+	private HandlerToken handlerToken;
 	
 	public HandlerAsync getAsync() {
 		return async;
@@ -37,6 +39,9 @@ public class CommonComponent {
 	}
 	public EnvironmentConfig getConfig() {
 		return config;
+	}
+	public HandlerToken getHandlerToken() {
+		return handlerToken;
 	}
 	
 }

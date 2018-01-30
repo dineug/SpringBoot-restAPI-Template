@@ -17,30 +17,26 @@ public interface CodeService {
 	 * 코드조회
 	 * @param searchVO
 	 * @return
-	 * @throws Exception
 	 */
-	public List<CodeVO> codeList(SearchVO searchVO) throws Exception;
+	public List<CodeVO> codeList(SearchVO searchVO);
 	
 	/**
 	 * 코드생성
 	 * @param codeVO
-	 * @throws Exception
 	 */
-	public void codeInsert(CodeVO codeVO) throws Exception;
+	public void codeInsert(CodeVO codeVO);
 	
 	/**
 	 * 코드수정
 	 * @param inCodeUpdateVO
 	 * @return 성공여부
-	 * @throws Exception
 	 */
-	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO) throws Exception;
+	public boolean codeUpdate(InCodeUpdateVO inCodeUpdateVO);
 	
 	/**
 	 * 코드삭제
 	 * @param codeVO
 	 * @return 성공여부
-	 * @throws Exception
 	 */
-	public boolean codeDelete(CodeVO codeVO) throws Exception;
+	public boolean codeDelete(CodeVO codeVO);
 }

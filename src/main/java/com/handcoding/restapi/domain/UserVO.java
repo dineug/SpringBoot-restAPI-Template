@@ -1,10 +1,13 @@
 package com.handcoding.restapi.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class UserVO extends CommonVO {
+public class UserVO extends CommonVO implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	@ApiModelProperty(value="ID")
 	private String id;
@@ -47,20 +50,6 @@ public class UserVO extends CommonVO {
 	}
 	public String getUserTypeCode() {
 		return userTypeCode;
-	}
-	/**
-	 * code : 0 - 사용자 default<br>
-	 * code : 1 - 관리자<br>
-	 * @return code
-	 */
-	public int getUserTypeCodeInt() {
-		int code = 0;
-		if(userTypeCode.equals("NORMAL")) {
-			code = 0;
-		}else if(userTypeCode.equals("ADMIN")) {
-			code = 1;
-		}
-		return code;
 	}
 	public void setUserTypeCode(String userTypeCode) {
 		this.userTypeCode = userTypeCode;

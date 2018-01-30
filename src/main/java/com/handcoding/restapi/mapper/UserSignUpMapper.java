@@ -39,8 +39,8 @@ public interface UserSignUpMapper {
 	 */
 	@Update("update user\r\n" + 
 			"set statusCode = 'USE'\r\n" + 
-			"where id = (select id from email_confirm where emailKey = #{emailKey} and expiredDate > now())\r\n" + 
-			"and userTypeCode = (select userTypeCode from email_confirm where emailKey = #{emailKey} and expiredDate > now())")
+			"where id = (select id from email_confirm where binary(emailKey) = #{emailKey} and expiredDate > now())\r\n" + 
+			"and userTypeCode = (select userTypeCode from email_confirm where binary(emailKey) = #{emailKey} and expiredDate > now())")
 	public int emailConfirmUpdate(EmailConfirmVO emailConfirmVO);
 	
 	/**
@@ -48,7 +48,7 @@ public interface UserSignUpMapper {
 	 * @param emailConfirmVO
 	 * @return
 	 */
-	@Select("select count(*) from email_confirm where emailKey = #{emailKey}")
+	@Select("select count(*) from email_confirm where binary(emailKey) = #{emailKey}")
 	public int emailConfirmKeyCheck(EmailConfirmVO emailConfirmVO);
 	
 	/**
@@ -56,7 +56,7 @@ public interface UserSignUpMapper {
 	 * @param emailConfirmVO
 	 * @return
 	 */
-	@Delete("delete from email_confirm where emailKey = #{emailKey}")
+	@Delete("delete from email_confirm where binary(emailKey) = #{emailKey}")
 	public int emailConfirmKeyDelete(EmailConfirmVO emailConfirmVO);
 	
 }

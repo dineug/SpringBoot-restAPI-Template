@@ -40,7 +40,7 @@ public class AdminCodeController {
 	 */
 	@ApiOperation(value="", notes = "코드조회")
 	@GetMapping("/v1.0/codes")
-	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) throws Exception {
+	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) {
 		ResponseVO<List<CodeVO>> responseVO = new ResponseVO<>();
 		List<CodeVO> codeList = service.getCodeService().codeList(searchVO);
 		responseVO.setResponse(codeList);
@@ -58,7 +58,7 @@ public class AdminCodeController {
 	 */
 	@ApiOperation(value="", notes = "코드생성")
 	@PostMapping("/v1.0/codes")
-	public ResponseVO<Object> codeInsert(@RequestBody CodeVO codeVO) throws Exception {
+	public ResponseVO<Object> codeInsert(@RequestBody CodeVO codeVO) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		service.getCodeService().codeInsert(codeVO);
 		return responseVO;
@@ -73,7 +73,7 @@ public class AdminCodeController {
 	 */
 	@ApiOperation(value="", notes = "코드수정")
 	@PutMapping("/v1.0/codes/{code}")
-	public ResponseVO<Object> codeUpdate(@RequestBody InCodeUpdateVO inCodeUpdateVO, @PathVariable String code) throws Exception {
+	public ResponseVO<Object> codeUpdate(@RequestBody InCodeUpdateVO inCodeUpdateVO, @PathVariable String code) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		inCodeUpdateVO.setCode(code);
 		boolean check = service.getCodeService().codeUpdate(inCodeUpdateVO);
@@ -89,7 +89,7 @@ public class AdminCodeController {
 	 */
 	@ApiOperation(value="", notes = "코드삭제")
 	@DeleteMapping("/v1.0/codes/{code}")
-	public ResponseVO<Object> codeDelete(CodeVO codeVO) throws Exception {
+	public ResponseVO<Object> codeDelete(CodeVO codeVO) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		boolean check = service.getCodeService().codeDelete(codeVO);
 		responseVO.setCheck(check);

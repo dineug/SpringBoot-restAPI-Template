@@ -12,9 +12,8 @@ public interface CommonMapper {
 	/**
 	 * 페이징 총 개수 조회
 	 * @return
-	 * @throws Exception
 	 */
 	@Select("SELECT FOUND_ROWS()")
-	public int pagingTotal() throws Exception;
+	public int pagingTotal();
 	
 }

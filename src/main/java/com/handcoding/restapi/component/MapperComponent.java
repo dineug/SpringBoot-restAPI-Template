@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import com.handcoding.restapi.mapper.CodeMapper;
 import com.handcoding.restapi.mapper.CommonMapper;
+import com.handcoding.restapi.mapper.UserLoginMapper;
 import com.handcoding.restapi.mapper.UserSignUpMapper;
 
 /**
@@ -21,7 +22,8 @@ public class MapperComponent {
 	private CodeMapper codeMapper;
 	@Autowired
 	private UserSignUpMapper userSignUpMapper;
-
+	@Autowired
+	private UserLoginMapper userLoginMapper;
 	
 	
 	public CommonMapper getCommonMapper() {
@@ -33,5 +35,7 @@ public class MapperComponent {
 	public UserSignUpMapper getUserSignUpMapper() {
 		return userSignUpMapper;
 	}
-	
+	public UserLoginMapper getUserLoginMapper() {
+		return userLoginMapper;
+	}
 }

@@ -39,7 +39,7 @@ public class SystemSignUpController {
 	 */
 	@ApiOperation(value="", notes = "사용자 이메일인증")
 	@PutMapping("/v1.0/users/emailconfirm")
-	public ResponseVO<Object> emailConfirm(Locale locale, @RequestBody EmailConfirmVO emailConfirmVO) throws Exception {
+	public ResponseVO<Object> emailConfirm(Locale locale, @RequestBody EmailConfirmVO emailConfirmVO) {
 		ResponseVO<Object> responseVO = null;
 		String message = null;
 		responseVO = service.getUserSignUpService().userEmailConfirm(emailConfirmVO);
