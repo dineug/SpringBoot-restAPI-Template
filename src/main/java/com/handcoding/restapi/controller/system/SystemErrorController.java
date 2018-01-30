@@ -52,6 +52,8 @@ public class SystemErrorController {
 	 * @param locale
 	 * @return
 	 */
+	@ApiOperation(value="", notes = "token 에러처리")
+	@GetMapping("/token")
 	@ExceptionHandler(TokenBadRequestException.class)
 	public ResponseEntity<ResponseVO<Object>> token(Locale locale) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
