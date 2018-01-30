@@ -18,7 +18,6 @@ import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import com.handcoding.restapi.filter.AccessLogFilter;
 import com.handcoding.restapi.interceptor.InterceptorAccess;
-import com.handcoding.restapi.interceptor.InterceptorToken;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -82,8 +81,6 @@ public class RestapiApplication extends WebMvcConfigurerAdapter {
 	
 	@Autowired
 	private InterceptorAccess interceptorAccess;
-	@Autowired
-	private InterceptorToken interceptorToken;
 	
 	/**
 	 * 인터셉터 등록
@@ -92,9 +89,6 @@ public class RestapiApplication extends WebMvcConfigurerAdapter {
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
 		registry.addInterceptor(interceptorAccess).addPathPatterns("/normal/**")
-													.addPathPatterns("/system/**")
-													.addPathPatterns("/admin/**");
-		registry.addInterceptor(interceptorToken).addPathPatterns("/normal/**")
 													.addPathPatterns("/system/**")
 													.addPathPatterns("/admin/**");
 	}
