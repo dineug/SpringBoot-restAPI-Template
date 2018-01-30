@@ -29,8 +29,16 @@ public class HandlerToken {
 	 */
 	public String getToken(OutUserLoginVO outUserLoginVO) {
 		TempKey tempKey = new TempKey();
-		String token = tempKey.getKey(300);
+		String newToken = tempKey.getKey(300);
+		String oldToken = getCheckId(outUserLoginVO);
+		String token = null;
+		if(oldToken == null) {
+			token = newToken;
+		}else {
+			token = oldToken;
+		}
 		setToken(token, outUserLoginVO);
+		setCheckId(token, outUserLoginVO);
 		return token;
 	}
 	
@@ -43,6 +51,7 @@ public class HandlerToken {
 		OutUserLoginVO outUserLoginVO = (OutUserLoginVO) tokens.get(token);
 		if(outUserLoginVO != null) {
 			setToken(token, outUserLoginVO);
+			setCheckId(token, outUserLoginVO);
 		}
 		return outUserLoginVO;
 	}
@@ -57,6 +66,29 @@ public class HandlerToken {
 			tokens.set(token, outUserLoginVO, 30, TimeUnit.MINUTES);
 		}else {
 			tokens.set(token, outUserLoginVO, outUserLoginVO.getTimeout(), outUserLoginVO.getTimeUnit());
+		}
+	}
+	
+	/**
+	 * 토큰 생성전 oldToken 조회
+	 * @param outUserLoginVO
+	 * @return
+	 */
+	private String getCheckId(OutUserLoginVO outUserLoginVO) {
+		String oldToken = (String) tokens.get(outUserLoginVO.getId());
+		return oldToken;
+	}
+	
+	/**
+	 * 토큰 중복 체크용
+	 * @param token
+	 * @param outUserLoginVO
+	 */
+	private void setCheckId(String token, OutUserLoginVO outUserLoginVO) {
+		if(outUserLoginVO.getTimeout()==0 || outUserLoginVO.getTimeUnit()==null) {
+			tokens.set(outUserLoginVO.getId(), token, 30, TimeUnit.MINUTES);
+		}else {
+			tokens.set(outUserLoginVO.getId(), token, outUserLoginVO.getTimeout(), outUserLoginVO.getTimeUnit());
 		}
 	}
 	
