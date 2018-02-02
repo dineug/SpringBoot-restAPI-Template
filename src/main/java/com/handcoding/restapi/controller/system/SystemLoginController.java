@@ -8,6 +8,8 @@ import com.handcoding.restapi.annotation.User;
 import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.UserVO;
 
+import io.swagger.annotations.ApiOperation;
+
 /**
  * 사용자 로그인 시스템 API
  * @author 이승환
@@ -22,6 +24,7 @@ public class SystemLoginController {
 	 * @param token
 	 * @return
 	 */
+	@ApiOperation(value="", notes = "사용자 정보")
 	@GetMapping("/v1.0/users/token")
 	public ResponseVO<UserVO> getUser(@User UserVO user) {
 		ResponseVO<UserVO> responseVO = new ResponseVO<>();

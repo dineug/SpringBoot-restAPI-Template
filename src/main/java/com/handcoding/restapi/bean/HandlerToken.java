@@ -12,9 +12,9 @@ import com.handcoding.restapi.domain.out.OutUserLoginVO;
 import com.handcoding.restapi.util.TempKey;
 
 /**
- * 로그인 토큰 처리
+ * 토큰 처리
  * @author 이승환
- * @version 2018.01.30 v1.0
+ * @version 2018.02.02 v1.1
  */
 @Component
 public class HandlerToken {
@@ -77,6 +77,24 @@ public class HandlerToken {
 	private String getCheckId(OutUserLoginVO outUserLoginVO) {
 		String oldToken = (String) tokens.get(outUserLoginVO.getId());
 		return oldToken;
+	}
+	
+	/**
+	 * Authorization 저장
+	 * @param Authorization
+	 * @param clientId
+	 */
+	public void setAuthorization(String authorization, String clientId) {
+		tokens.set(clientId, authorization, 1, TimeUnit.MINUTES);
+	}
+	
+	/**
+	 * Authorization 가져오기
+	 * @param clientId
+	 * @return
+	 */
+	public String getAuthorization(String clientId) {
+		return (String) tokens.get(clientId);
 	}
 	
 }

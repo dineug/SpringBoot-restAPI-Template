@@ -18,9 +18,9 @@ public class RestapiApplicationTests {
 	@Autowired
 	private DataSource ds;
 
-	@Autowired
+	@Autowired 
 	private SqlSessionFactory sqlSession;
-
+	
 	@Test
 	public void contextLoads() {
 	}
@@ -37,5 +37,5 @@ public class RestapiApplicationTests {
 	public void testSqlSession() throws Exception {
 		System.out.println("sqlSession: " + sqlSession);
 	}
-
+	
 }

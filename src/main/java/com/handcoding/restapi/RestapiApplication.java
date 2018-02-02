@@ -90,7 +90,8 @@ public class RestapiApplication extends WebMvcConfigurerAdapter {
 		registry.addInterceptor(localeChangeInterceptor());
 		registry.addInterceptor(interceptorAccess).addPathPatterns("/normal/**")
 													.addPathPatterns("/system/**")
-													.addPathPatterns("/admin/**");
+													.addPathPatterns("/admin/**")
+													.excludePathPatterns("/system/oauth/token");
 	}
 	
 	/**

@@ -20,7 +20,7 @@ import io.swagger.annotations.ApiOperation;
 /**
  * 시스템 error
  * @author 이승환
- * @version 2018.01.30 v1.1
+ * @version 2018.02.02 v1.2
  */
 @RestController
 @RequestMapping("/error")
@@ -36,7 +36,7 @@ public class SystemErrorController {
 	 * @return
 	 */
 	@ApiOperation(value="", notes = "apiKey 에러처리")
-	@GetMapping("/apikey")
+	@GetMapping("/accessToken")
 	public ResponseEntity<ResponseVO<Object>> apikey(Locale locale) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		String message = null;
