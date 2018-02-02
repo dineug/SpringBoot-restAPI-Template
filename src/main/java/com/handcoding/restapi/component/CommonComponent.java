@@ -5,7 +5,6 @@ import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.handcoding.restapi.bean.EnvironmentConfig;
 import com.handcoding.restapi.bean.HandlerAsync;
 import com.handcoding.restapi.bean.HandlerToken;
 
@@ -24,8 +23,6 @@ public class CommonComponent {
 	@Autowired
 	private MessageSource msg;
 	@Autowired
-	private EnvironmentConfig config;
-	@Autowired
 	private HandlerToken handlerToken;
 	
 	public HandlerAsync getAsync() {
@@ -36,9 +33,6 @@ public class CommonComponent {
 	}
 	public MessageSource getMsg() {
 		return msg;
-	}
-	public EnvironmentConfig getConfig() {
-		return config;
 	}
 	public HandlerToken getHandlerToken() {
 		return handlerToken;
