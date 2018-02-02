@@ -1,12 +1,10 @@
 package com.handcoding.restapi.api.oauth2;
 
-import java.util.Map;
-
 import com.handcoding.restapi.domain.OAuth2CheckTokenVO;
 import com.handcoding.restapi.domain.OAuth2TokenVO;
 
 import retrofit2.Call;
-import retrofit2.http.FieldMap;
+import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -27,7 +25,7 @@ public interface OAuth2 {
 	 */
 	@FormUrlEncoded
 	@POST("/oauth/token")
-	public Call<OAuth2TokenVO> getAccessToken(@Header("authorization") String authorization, @FieldMap Map<String, String> fields);
+	public Call<OAuth2TokenVO> getAccessToken(@Header("authorization") String authorization, @Field("grant_type") String grantType);
 	
 	/**
 	 * AccessToken 체크

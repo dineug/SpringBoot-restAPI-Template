@@ -2,8 +2,6 @@ package com.handcoding.restapi.api.oauth2;
 
 import java.io.IOException;
 import java.util.Base64;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,15 +37,11 @@ public class OAuth2API extends EndpointAPI<OAuth2>{
 	 * @return
 	 */
 	public OAuth2TokenVO getAccessToken(OAuth2VO oAuth2VO) {
-		Map<String, String> fields = new HashMap<>();
-		fields.put("client_id", oAuth2VO.getClient_id());
-		fields.put("client_secret", oAuth2VO.getClient_secret());
-		fields.put("grant_type", oAuth2VO.getGrant_type());
 		String authorization = "Basic ";
 		// Authorization 헤더 client_id:cilent_secret base64인코딩
 		byte[] base64 = (oAuth2VO.getClient_id()+":"+oAuth2VO.getClient_secret()).getBytes();
 		authorization += Base64.getEncoder().encodeToString(base64);
-		Call<OAuth2TokenVO> call = this.create().getAccessToken(authorization, fields);
+		Call<OAuth2TokenVO> call = this.create().getAccessToken(authorization, oAuth2VO.getGrant_type());
 		try {
 			Response<OAuth2TokenVO> resopnse = call.execute();
 			if(resopnse.isSuccessful()) {
