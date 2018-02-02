@@ -4,3 +4,5 @@
 [blog](http://handcoding.tistory.com/category/Spring/SpringBoot)
 
 [SpringBoot-front-Template](https://github.com/SeungHwan-Lee/SpringBoot-front-Template)
+
+[SpringBoot-OAuth2-Template](https://github.com/SeungHwan-Lee/SpringBoot-OAuth2-Template)
