@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.handcoding.restapi.component.CommonComponent;
 import com.handcoding.restapi.domain.ResponseVO;
+import com.handcoding.restapi.exception.AccessTokenBadRequestException;
 import com.handcoding.restapi.exception.TokenBadRequestException;
 
 import io.swagger.annotations.ApiOperation;
@@ -59,6 +60,24 @@ public class SystemErrorController {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		String message = null;
 		message = common.getMsg().getMessage("no_key", new String[] {"token"}, locale);
+		responseVO.setCode(400);
+		responseVO.setCheck(false);
+		responseVO.setMessage(message);
+		return new ResponseEntity<ResponseVO<Object>>(responseVO, HttpStatus.BAD_REQUEST);
+	}
+	
+	/**
+	 * accessToken 발급 에러처리
+	 * @param locale
+	 * @return
+	 */
+	@ApiOperation(value="", notes = "accessToken 발급 에러처리")
+	@GetMapping("/getAccessToken")
+	@ExceptionHandler(AccessTokenBadRequestException.class)
+	public ResponseEntity<ResponseVO<Object>> accessToken(Locale locale) {
+		ResponseVO<Object> responseVO = new ResponseVO<>();
+		String message = null;
+		message = common.getMsg().getMessage("bad_request", new String[] {"clientId, clientSecret"}, locale);
 		responseVO.setCode(400);
 		responseVO.setCheck(false);
 		responseVO.setMessage(message);

@@ -17,8 +17,8 @@ values('dlrmld', SHA2('1234', 256), '이승환', 'dlrmld@naver.com', 'NORMAL', '
 
 
 insert into oauth_client_details
-(client_id, client_secret, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, userId)
+(client_id, client_secret, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, id)
 values('my_client_id', 'my_client_secret', null, 'public,private', 'client_credentials', null, 'ROLE_CLIENT', 36000, 2592000, null, true, 'master');
 insert into oauth_client_details
-(client_id, client_secret, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, userId)
+(client_id, client_secret, resource_ids, scope, authorized_grant_types, web_server_redirect_uri, authorities, access_token_validity, refresh_token_validity, additional_information, autoapprove, id)
 values('your_client_id', 'your_client_secret', null, 'public', 'client_credentials', null, 'ROLE_CLIENT', 36000, 2592000, null, true, 'dlrmld');

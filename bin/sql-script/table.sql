@@ -55,7 +55,7 @@ create table oauth_client_details (
   refresh_token_validity INTEGER,
   additional_information VARCHAR(4096),
   autoapprove VARCHAR(256),
-  userId VARCHAR(20)
+  id VARCHAR(20) PRIMARY KEY
 );
 
 create table oauth_access_token (
