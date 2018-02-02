@@ -30,12 +30,10 @@ public class InterceptorAccess implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		logger.info("========================================\tAccess 인터셉터 시작 \t=============================================");
-		String clientId = request.getHeader("clientId");
 		String accessToken = request.getHeader("accessToken");
-		clientId = clientId != null ? clientId : "";
 		accessToken = accessToken != null ? accessToken : "";
 		boolean check = false;
-		OAuth2CheckTokenVO oAuth2CheckTokenVO = oAuth2API.checkAccessToken(clientId, accessToken);
+		OAuth2CheckTokenVO oAuth2CheckTokenVO = oAuth2API.checkAccessToken(accessToken);
 		if(oAuth2CheckTokenVO != null) {
 			check = true;
 		}else {

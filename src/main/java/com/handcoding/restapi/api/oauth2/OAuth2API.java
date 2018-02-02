@@ -51,8 +51,9 @@ public class OAuth2API extends EndpointAPI<OAuth2>{
 		try {
 			Response<OAuth2TokenVO> resopnse = call.execute();
 			if(resopnse.isSuccessful()) {
-				common.getHandlerToken().setAuthorization(authorization, oAuth2VO.getClient_id());
-				return resopnse.body();
+				OAuth2TokenVO oAuth2TokenVO = resopnse.body();
+				common.getHandlerToken().setAuthorization(authorization, oAuth2TokenVO.getAccess_token());
+				return oAuth2TokenVO;
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -65,8 +66,8 @@ public class OAuth2API extends EndpointAPI<OAuth2>{
 	 * @param token
 	 * @return
 	 */
-	public OAuth2CheckTokenVO checkAccessToken(String clientId, String accessToken) {
-		String authorization = common.getHandlerToken().getAuthorization(clientId);
+	public OAuth2CheckTokenVO checkAccessToken(String accessToken) {
+		String authorization = common.getHandlerToken().getAuthorization(accessToken);
 		Call<OAuth2CheckTokenVO> call = this.create().checkAccessToken(authorization, accessToken);
 		try {
 			Response<OAuth2CheckTokenVO> resopnse = call.execute();

@@ -82,19 +82,19 @@ public class HandlerToken {
 	/**
 	 * Authorization 저장
 	 * @param Authorization
-	 * @param clientId
+	 * @param accessToken
 	 */
-	public void setAuthorization(String authorization, String clientId) {
-		tokens.set(clientId, authorization, 1, TimeUnit.MINUTES);
+	public void setAuthorization(String authorization, String accessToken) {
+		tokens.set(accessToken, authorization, 1, TimeUnit.MINUTES);
 	}
 	
 	/**
 	 * Authorization 가져오기
-	 * @param clientId
+	 * @param accessToken
 	 * @return
 	 */
-	public String getAuthorization(String clientId) {
-		return (String) tokens.get(clientId);
+	public String getAuthorization(String accessToken) {
+		return (String) tokens.get(accessToken);
 	}
 	
 }
