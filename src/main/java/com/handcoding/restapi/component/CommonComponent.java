@@ -5,6 +5,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import com.handcoding.restapi.api.oauth2.OAuth2API;
 import com.handcoding.restapi.bean.HandlerAsync;
 import com.handcoding.restapi.bean.HandlerToken;
 
@@ -24,6 +25,8 @@ public class CommonComponent {
 	private MessageSource msg;
 	@Autowired
 	private HandlerToken handlerToken;
+	@Autowired
+	private OAuth2API oAuth2API;
 	
 	public HandlerAsync getAsync() {
 		return async;
@@ -36,6 +39,9 @@ public class CommonComponent {
 	}
 	public HandlerToken getHandlerToken() {
 		return handlerToken;
+	}
+	public OAuth2API getoAuth2API() {
+		return oAuth2API;
 	}
 	
 }

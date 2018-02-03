@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.handcoding.restapi.api.oauth2.OAuth2API;
+import com.handcoding.restapi.component.CommonComponent;
 import com.handcoding.restapi.domain.OAuth2CheckTokenVO;
 
 /**
@@ -22,7 +22,7 @@ import com.handcoding.restapi.domain.OAuth2CheckTokenVO;
 public class InterceptorAccess implements HandlerInterceptor {
 	
 	@Autowired
-	private OAuth2API oAuth2API;
+	private CommonComponent common;
 	
 	private static final Logger logger = LoggerFactory.getLogger(InterceptorAccess.class);
 	
@@ -33,7 +33,7 @@ public class InterceptorAccess implements HandlerInterceptor {
 		String accessToken = request.getHeader("accessToken");
 		accessToken = accessToken != null ? accessToken : "";
 		boolean check = false;
-		OAuth2CheckTokenVO oAuth2CheckTokenVO = oAuth2API.checkAccessToken(accessToken);
+		OAuth2CheckTokenVO oAuth2CheckTokenVO = common.getoAuth2API().checkAccessToken(accessToken);
 		if(oAuth2CheckTokenVO != null) {
 			check = true;
 		}else {
