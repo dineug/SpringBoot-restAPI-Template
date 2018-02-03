@@ -3,7 +3,6 @@ package com.handcoding.restapi;
 import java.util.Locale;
 
 import org.mybatis.spring.annotation.MapperScan;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.i18n.CookieLocaleResolver;
 import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 
 import com.handcoding.restapi.filter.AccessLogFilter;
-import com.handcoding.restapi.interceptor.InterceptorAccess;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -79,19 +77,12 @@ public class RestapiApplication extends WebMvcConfigurerAdapter {
 		return localeChangeInterceptor;
 	}
 	
-	@Autowired
-	private InterceptorAccess interceptorAccess;
-	
 	/**
 	 * 인터셉터 등록
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(localeChangeInterceptor());
-		registry.addInterceptor(interceptorAccess).addPathPatterns("/normal/**")
-													.addPathPatterns("/system/**")
-													.addPathPatterns("/admin/**")
-													.excludePathPatterns("/system/oauth/token");
 	}
 	
 	/**

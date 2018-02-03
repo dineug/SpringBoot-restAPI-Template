@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.handcoding.restapi.annotation.Access;
 import com.handcoding.restapi.component.CommonComponent;
 import com.handcoding.restapi.component.ServiceComponent;
 import com.handcoding.restapi.domain.ResponseVO;
@@ -37,6 +38,7 @@ public class UserLoginController {
 	 * @return
 	 */
 	@ApiOperation(value="", notes = "기본사용자 로그인")
+	@Access(scope="public")
 	@PostMapping("/v1.0/users/{id}/login")
 	public ResponseVO<String> login(@PathVariable String id, @RequestBody InUserLoginVO inUserLoginVO) {
 		ResponseVO<String> responseVO = new ResponseVO<>();

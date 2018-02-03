@@ -7,24 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.handcoding.restapi.component.CommonComponent;
 import com.handcoding.restapi.domain.ResponseVO;
+import com.handcoding.restapi.exception.AccessAuthorityException;
 import com.handcoding.restapi.exception.AccessTokenBadRequestException;
 import com.handcoding.restapi.exception.TokenBadRequestException;
-
-import io.swagger.annotations.ApiOperation;
 
 /**
  * 시스템 error
  * @author 이승환
- * @version 2018.02.02 v1.2
+ * @version 2018.02.03 v1.3
  */
-@RestController
-@RequestMapping("/error")
 @ControllerAdvice
 public class SystemErrorController {
 	
@@ -32,16 +26,15 @@ public class SystemErrorController {
 	private CommonComponent common;
 	
 	/**
-	 * apiKey 에러처리
+	 * accessToken 에러처리
 	 * @param locale
 	 * @return
 	 */
-	@ApiOperation(value="", notes = "apiKey 에러처리")
-	@GetMapping("/accessToken")
+	@ExceptionHandler(AccessAuthorityException.class)
 	public ResponseEntity<ResponseVO<Object>> apikey(Locale locale) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
 		String message = null;
-		message = common.getMsg().getMessage("no_key", new String[] {"API"}, locale);
+		message = common.getMsg().getMessage("access_no_key", new String[] {"API"}, locale);
 		responseVO.setCode(400);
 		responseVO.setCheck(false);
 		responseVO.setMessage(message);
@@ -53,8 +46,6 @@ public class SystemErrorController {
 	 * @param locale
 	 * @return
 	 */
-	@ApiOperation(value="", notes = "token 에러처리")
-	@GetMapping("/token")
 	@ExceptionHandler(TokenBadRequestException.class)
 	public ResponseEntity<ResponseVO<Object>> token(Locale locale) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
@@ -71,8 +62,6 @@ public class SystemErrorController {
 	 * @param locale
 	 * @return
 	 */
-	@ApiOperation(value="", notes = "accessToken 발급 에러처리")
-	@GetMapping("/getAccessToken")
 	@ExceptionHandler(AccessTokenBadRequestException.class)
 	public ResponseEntity<ResponseVO<Object>> accessToken(Locale locale) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.handcoding.restapi.annotation.Access;
 import com.handcoding.restapi.component.ServiceComponent;
 import com.handcoding.restapi.domain.CodeVO;
 import com.handcoding.restapi.domain.ResponseVO;
@@ -39,6 +40,7 @@ public class AdminCodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드조회")
+	@Access(scope="private")
 	@GetMapping("/v1.0/codes")
 	public ResponseVO<List<CodeVO>> codeList(SearchVO searchVO) {
 		ResponseVO<List<CodeVO>> responseVO = new ResponseVO<>();
@@ -57,6 +59,7 @@ public class AdminCodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드생성")
+	@Access(scope="private")
 	@PostMapping("/v1.0/codes")
 	public ResponseVO<Object> codeInsert(@RequestBody CodeVO codeVO) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
@@ -72,6 +75,7 @@ public class AdminCodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드수정")
+	@Access(scope="private")
 	@PutMapping("/v1.0/codes/{code}")
 	public ResponseVO<Object> codeUpdate(@RequestBody InCodeUpdateVO inCodeUpdateVO, @PathVariable String code) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();
@@ -88,6 +92,7 @@ public class AdminCodeController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드삭제")
+	@Access(scope="private")
 	@DeleteMapping("/v1.0/codes/{code}")
 	public ResponseVO<Object> codeDelete(CodeVO codeVO) {
 		ResponseVO<Object> responseVO = new ResponseVO<>();

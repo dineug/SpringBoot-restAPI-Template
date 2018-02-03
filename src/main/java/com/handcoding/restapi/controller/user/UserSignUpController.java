@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.handcoding.restapi.annotation.Access;
 import com.handcoding.restapi.component.ServiceComponent;
 import com.handcoding.restapi.domain.ResponseVO;
 import com.handcoding.restapi.domain.in.InUserSignUpVO;
@@ -31,6 +32,7 @@ public class UserSignUpController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "기본사용자 회원가입")
+	@Access(scope="public")
 	@PostMapping("/v1.0/users")
 	public ResponseVO<Object> signUp(@RequestBody InUserSignUpVO inUserSignUpVO) throws Exception {
 		ResponseVO<Object> responseVO = new ResponseVO<>();

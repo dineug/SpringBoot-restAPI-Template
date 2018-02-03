@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.handcoding.restapi.annotation.Access;
 import com.handcoding.restapi.component.CommonComponent;
 import com.handcoding.restapi.component.ServiceComponent;
 import com.handcoding.restapi.domain.EmailConfirmVO;
@@ -38,6 +39,7 @@ public class SystemSignUpController {
 	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "사용자 이메일인증")
+	@Access(scope="public")
 	@PutMapping("/v1.0/users/emailconfirm")
 	public ResponseVO<Object> emailConfirm(Locale locale, @RequestBody EmailConfirmVO emailConfirmVO) {
 		ResponseVO<Object> responseVO = null;

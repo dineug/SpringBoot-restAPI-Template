@@ -24,9 +24,9 @@ public class LogAOP {
             logger.info("===========================================\trestAPI Service 시작\t=====================================");
         }
 		logger.info(j.getTarget()+"");
+		logger.info("Method:\t"+j.getSignature().getName());
 		Object args[] = j.getArgs();
 		if(args!=null){
-			logger.info("Method:\t"+j.getSignature().getName());
 			for (int i = 0; i < args.length; i++) {
 				logger.info(i+" 번째 값 :\t"+args[i]);
 			}

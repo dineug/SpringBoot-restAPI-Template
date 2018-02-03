@@ -45,9 +45,6 @@ dependencies {
 	compile("org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16")
 	// aop
 	compile('org.springframework.boot:spring-boot-starter-aop')
-	// view
-	compile('javax.servlet:jstl')
-	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
 	// swagger
 	compile('io.springfox:springfox-swagger2:2.7.0')
 	compile('io.springfox:springfox-swagger-ui:2.7.0')

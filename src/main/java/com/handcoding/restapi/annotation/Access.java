@@ -6,12 +6,14 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * token -> UserVO 주입
+ * Access 정보
  * @author 이승환
- * @version 2018.01.30 v1.0
+ * @version 2018.02.03 v1.0
  */
-@Target(ElementType.PARAMETER)
+@Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface User {
-
+public @interface Access {
+	
+	String scope();
+	
 }
