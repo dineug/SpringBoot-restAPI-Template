@@ -3,6 +3,7 @@ package com.handcoding.restapi.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.handcoding.restapi.mapper.ApiMapper;
 import com.handcoding.restapi.mapper.CodeMapper;
 import com.handcoding.restapi.mapper.CommonMapper;
 import com.handcoding.restapi.mapper.UserLoginMapper;
@@ -24,7 +25,8 @@ public class MapperComponent {
 	private UserSignUpMapper userSignUpMapper;
 	@Autowired
 	private UserLoginMapper userLoginMapper;
-	
+	@Autowired
+	private ApiMapper apiMapper;
 	
 	public CommonMapper getCommonMapper() {
 		return commonMapper;
@@ -38,4 +40,8 @@ public class MapperComponent {
 	public UserLoginMapper getUserLoginMapper() {
 		return userLoginMapper;
 	}
+	public ApiMapper getApiMapper() {
+		return apiMapper;
+	}
+	
 }

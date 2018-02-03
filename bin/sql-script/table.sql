@@ -68,3 +68,44 @@ create table oauth_access_token (
   refresh_token VARCHAR(256)
 );
 
+
+
+-- API 정보테이블
+CREATE TABLE `api` (
+	`apiTypeCode` CHAR(20)     NOT NULL, -- API 타입
+	`url`         VARCHAR(150) NOT NULL, -- API URL
+	`method`      VARCHAR(20)  NOT NULL, -- API 메소드 타입
+	`notes`       VARCHAR(100) NOT NULL, -- API 설명
+	`scope`       VARCHAR(20)  NOT NULL  -- API 호출범위
+);
+
+-- API 정보테이블
+ALTER TABLE `api`
+	ADD CONSTRAINT `PK_api` -- API 정보테이블 기본키
+		PRIMARY KEY (
+			`apiTypeCode`, -- API 타입
+			`url`,         -- API URL
+			`method`       -- API 메소드 타입
+		);
+
+-- client API 권한정보
+CREATE TABLE `api_client_auth` (
+	`client_id`   VARCHAR(256) NOT NULL, -- client 아이디
+	`apiTypeCode` CHAR(20)     NOT NULL, -- API 타입
+	`url`         VARCHAR(150) NOT NULL, -- API URL
+	`method`      VARCHAR(20)  NOT NULL, -- API 메소드 타입
+	`scope`       VARCHAR(20)  NOT NULL  -- API 호출범위
+);
+
+-- client API 권한정보
+ALTER TABLE `api_client_auth`
+	ADD CONSTRAINT `PK_api_client_auth` -- client API 권한정보 기본키
+		PRIMARY KEY (
+			`client_id`,   -- client 아이디
+			`apiTypeCode`, -- API 타입
+			`url`,         -- API URL
+			`method`       -- API 메소드 타입
+		);
+
+
+

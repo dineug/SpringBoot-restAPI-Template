@@ -3,6 +3,7 @@ package com.handcoding.restapi.component;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.handcoding.restapi.service.ApiService;
 import com.handcoding.restapi.service.CodeService;
 import com.handcoding.restapi.service.UserLoginService;
 import com.handcoding.restapi.service.UserSignUpService;
@@ -21,7 +22,8 @@ public class ServiceComponent {
 	private UserSignUpService userSignUpService;
 	@Autowired
 	private UserLoginService userLoginService;
-	
+	@Autowired
+	private ApiService apiService;
 	
 	public CodeService getCodeService() {
 		return codeService;
@@ -31,6 +33,9 @@ public class ServiceComponent {
 	}
 	public UserLoginService getUserLoginService() {
 		return userLoginService;
+	}
+	public ApiService getApiService() {
+		return apiService;
 	}
 	
 }

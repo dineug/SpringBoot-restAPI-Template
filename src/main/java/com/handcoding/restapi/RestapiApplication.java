@@ -28,7 +28,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableTransactionManagement
 @EnableSwagger2
 public class RestapiApplication extends WebMvcConfigurerAdapter {
-
+	
 	public static void main(String[] args) {
 		SpringApplication.run(RestapiApplication.class, args);
 	}

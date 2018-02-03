@@ -7,6 +7,10 @@ insert into code values('EMAIL_CONFIRM', 'USER_STATUS', '이메일인증대기')
 insert into code values('USE', 'USER_STATUS', '사용가능');
 insert into code values('LEAVE', 'USER_STATUS', '탈퇴');
 
+insert into code (code, descript) values('API_TYPE', 'API 타입');
+insert into code values('RESTAPI_01', 'API_TYPE', 'SpringBoot-restAPI-Template');
+
+
 insert into user
 (id, pw, name, email, userTypeCode, statusCode)
 values('master', SHA2('1234', 256), '이승환', 'dlrmld@naver.com', 'ADMIN', 'USE');
