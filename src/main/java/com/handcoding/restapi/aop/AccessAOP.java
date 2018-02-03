@@ -32,7 +32,7 @@ import com.handcoding.restapi.exception.AccessAuthorityException;
 /**
  * AccessToken AOP
  * @author 이승환
- * @version 2018.02.03 v1.0
+ * @version 2018.02.04 v1.1
  */
 @Component
 @Aspect
