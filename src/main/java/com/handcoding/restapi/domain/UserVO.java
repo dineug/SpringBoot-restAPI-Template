@@ -1,7 +1,6 @@
 package com.handcoding.restapi.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -22,7 +21,7 @@ public class UserVO extends CommonVO implements Serializable {
 	@ApiModelProperty(value="사용자 상태")
 	private String statusCode = "EMAIL_CONFIRM";
 	@ApiModelProperty(value="생성일")
-	private Date regDate;
+	private long regDate;
 	
 	public String getId() {
 		return id;
@@ -94,10 +93,10 @@ public class UserVO extends CommonVO implements Serializable {
 			break;
 		}
 	}
-	public Date getRegDate() {
+	public long getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(Date regDate) {
+	public void setRegDate(long regDate) {
 		this.regDate = regDate;
 	}
 	@Override
