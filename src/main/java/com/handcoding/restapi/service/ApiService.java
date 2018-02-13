@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.handcoding.restapi.domain.ApiClientAuthVO;
 import com.handcoding.restapi.domain.ApiVO;
+import com.handcoding.restapi.domain.SearchVO;
+import com.handcoding.restapi.domain.out.OutOauthClientApiAuthVO;
 
 /**
  * API 서비스
@@ -24,5 +26,11 @@ public interface ApiService {
 	 * @return
 	 */
 	public List<ApiClientAuthVO> apiClientAuthList(ApiClientAuthVO apiClientAuthVO);
+	
+	/**
+	 * client List 개별 API 리스트 정보 조회
+	 * @return
+	 */
+	public List<OutOauthClientApiAuthVO> oauthClientApiAuthVOList(SearchVO searchVO);
 	
 }

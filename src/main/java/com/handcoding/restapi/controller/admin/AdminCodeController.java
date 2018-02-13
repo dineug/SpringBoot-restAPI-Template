@@ -37,7 +37,6 @@ public class AdminCodeController {
 	 * 코드조회
 	 * @param searchVO
 	 * @return
-	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드조회")
 	@Access(scope="private")
@@ -56,7 +55,6 @@ public class AdminCodeController {
 	 * 코드생성
 	 * @param codeVO
 	 * @return
-	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드생성")
 	@Access(scope="private")
@@ -72,7 +70,6 @@ public class AdminCodeController {
 	 * @param codeVO
 	 * @param code
 	 * @return
-	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드수정")
 	@Access(scope="private")
@@ -89,7 +86,6 @@ public class AdminCodeController {
 	 * 코드삭제
 	 * @param codeVO
 	 * @return
-	 * @throws Exception
 	 */
 	@ApiOperation(value="", notes = "코드삭제")
 	@Access(scope="private")

@@ -12,4 +12,45 @@
 		</foreach>
 	</insert>
 	
+	<!-- client 정보 조회 -->
+	<select id="oauthClientDetailsList" resultType="OauthClientDetailsVO" parameterType="SearchVO">
+		select SQL_CALC_FOUND_ROWS * from oauth_client_details
+		where 1=1
+		<!-- 검색 -->
+		<if test="keyword != null">
+			<choose>
+				<when test="scope.equals('all')">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
+						client_id like concat('%',  #{item}, '%') or
+						id like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+				<when test="scope.equals('client_id')">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
+						client_id like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+				<when test="scope.equals('id')">
+					<foreach collection="keyword.split(' ')" item="item" open="and (" separator="or" close=")">
+						id like concat('%',  #{item}, '%')
+					</foreach>
+				</when>
+			</choose>
+		</if>
+		<!-- 정렬 -->
+		order by
+		<choose>
+			<when test="orderBy != null and orderBy.equals('desc')">
+				id desc, client_id desc
+			</when>
+			<otherwise>
+				id, client_id
+			</otherwise>
+		</choose>
+		<!-- 페이징 -->
+		<if test="limit != 0">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
 </mapper>

@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 import com.handcoding.restapi.domain.ApiClientAuthVO;
 import com.handcoding.restapi.domain.ApiVO;
 import com.handcoding.restapi.domain.OauthClientDetailsVO;
+import com.handcoding.restapi.domain.SearchVO;
 
 /**
  * api mapper
@@ -37,19 +38,21 @@ public interface ApiMapper {
 	 * client 정보 조회
 	 * @return
 	 */
-	@Select("select * from oauth_client_details")
-	public List<OauthClientDetailsVO> oauthClientDetailsList();
+	public List<OauthClientDetailsVO> oauthClientDetailsList(SearchVO searchVO);
 	
 	/**
 	 * 추가된 API 정보 client에 등록
 	 * @param apiClientAuthVO
 	 */
-	@Insert("insert into api_client_auth \r\n" + 
-			"select #{client_id} client_id, apiTypeCode, url, method, scope \r\n" + 
-			"from api \r\n" + 
-			"where apiTypeCode = #{apiTypeCode} \r\n" + 
-			"and url not in (select url from api_client_auth where client_id = #{client_id} and apiTypeCode = #{apiTypeCode}) \r\n" + 
-			"and method not in (select method from api_client_auth where client_id = #{client_id} and apiTypeCode = #{apiTypeCode})")
+	@Insert("insert into api_client_auth\r\n" + 
+			"select #{client_id} client_id, a.apiTypeCode, a.url, a.method, a.scope\r\n" + 
+			"from api a left join api_client_auth aca\r\n" + 
+			"on a.apiTypeCode = aca.apiTypeCode\r\n" + 
+			"and a.url = aca.url\r\n" + 
+			"and a.method = aca.method\r\n" + 
+			"and a.apiTypeCode = #{apiTypeCode}\r\n" + 
+			"and aca.client_id = #{client_id}\r\n" + 
+			"where aca.url is null")
 	public void apiClientAuthInsertAll(ApiClientAuthVO apiClientAuthVO);
 	
 	/**
@@ -107,5 +110,17 @@ public interface ApiMapper {
 	 */
 	@Select("select * from api_client_auth where client_id = #{client_id} and apiTypeCode = #{apiTypeCode}")
 	public List<ApiClientAuthVO> apiClientAuthList(ApiClientAuthVO apiClientAuthVO);
+	
+	/**
+	 * client API 정보 리스트 조회
+	 * @param apiClientAuthVO
+	 * @return
+	 */
+	@Select("select aca.url, aca.method, aca.scope, a.notes from api_client_auth aca, api a\r\n" + 
+			"where aca.client_id = #{client_id}\r\n" + 
+			"and aca.apiTypeCode = a.apiTypeCode\r\n" + 
+			"and aca.url = a.url\r\n" + 
+			"and aca.method = a.method")
+	public List<ApiVO> clientApiList(ApiClientAuthVO apiClientAuthVO);
 	
 }

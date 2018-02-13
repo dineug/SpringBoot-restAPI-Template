@@ -1,6 +1,6 @@
 package com.handcoding.restapi.domain;
 
-public class OauthClientDetailsVO {
+public class OauthClientDetailsVO extends CommonVO {
 	
 	private String client_id;
 	private String resource_ids;
