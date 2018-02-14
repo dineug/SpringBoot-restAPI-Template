@@ -33,4 +33,11 @@ public interface ApiService {
 	 */
 	public List<OutOauthClientApiAuthVO> oauthClientApiAuthVOList(SearchVO searchVO);
 	
+	/**
+	 * client API scope 변경
+	 * @param apiClientAuthVO
+	 * @return
+	 */
+	public boolean clientApiUpdate(ApiClientAuthVO apiClientAuthVO);
+	
 }

@@ -10,16 +10,17 @@ import io.swagger.annotations.ApiModelProperty;
 public class OutOauthClientApiAuthVO extends OauthClientDetailsVO {
 	
 	@ApiModelProperty(value="API 리스트")
-	private List<ApiVO> apiVO;
+	private List<ApiVO> apiList;
 
-	public List<ApiVO> getApiVO() {
-		return apiVO;
+	public List<ApiVO> getApiList() {
+		return apiList;
 	}
-	public void setApiVO(List<ApiVO> apiVO) {
-		this.apiVO = apiVO;
+	public void setApiList(List<ApiVO> apiList) {
+		this.apiList = apiList;
 	}
 	@Override
 	public String toString() {
-		return "OutOauthClientApiAuthVO [apiVO=" + apiVO + "]";
+		return "OutOauthClientApiAuthVO [apiList=" + apiList + "]";
 	}
+
 }

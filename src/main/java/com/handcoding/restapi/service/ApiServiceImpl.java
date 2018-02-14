@@ -90,12 +90,19 @@ public class ApiServiceImpl implements ApiService {
 			
 			// client API 정보 셋팅
 			apiClientAuthVO.setClient_id(temp.getClient_id());
-			outOauthClientApiAuthVO.setApiVO(mapper.getApiMapper().clientApiList(apiClientAuthVO));
+			outOauthClientApiAuthVO.setApiList(mapper.getApiMapper().clientApiList(apiClientAuthVO));
 			
 			// 리스트에 추가
 			oauthClientApiAuthList.add(outOauthClientApiAuthVO);
 		}
 		return oauthClientApiAuthList;
+	}
+
+	// client API scope 변경
+	@Override
+	@Transactional(propagation=Propagation.REQUIRED, readOnly=false, rollbackForClassName="Exception")
+	public boolean clientApiUpdate(ApiClientAuthVO apiClientAuthVO) {
+		return mapper.getApiMapper().clientApiUpdate(apiClientAuthVO) > 0;
 	}
 
 }

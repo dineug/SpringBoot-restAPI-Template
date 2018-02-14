@@ -123,4 +123,17 @@ public interface ApiMapper {
 			"and aca.method = a.method")
 	public List<ApiVO> clientApiList(ApiClientAuthVO apiClientAuthVO);
 	
+	/**
+	 * client API scope 변경
+	 * @param apiClientAuthVO
+	 * @return
+	 */
+	@Update("update api_client_auth\r\n" + 
+			"set scope = #{scope}\r\n" + 
+			"where client_id = #{client_id}\r\n" + 
+			"and apiTypeCode = #{apiTypeCode}\r\n" + 
+			"and method = #{method}\r\n" + 
+			"and url = #{url}")
+	public int clientApiUpdate(ApiClientAuthVO apiClientAuthVO);
+	
 }
