@@ -17,7 +17,7 @@ public interface UserLoginMapper {
 	 * @param inUserLoginVO
 	 * @return
 	 */
-	@Select("select id, name, email, userTypeCode, statusCode, regDate from user\r\n" + 
+	@Select("select id, name, email, userTypeCode, statusCode, UNIX_TIMESTAMP(regDate) regDate from user\r\n" + 
 			"where binary(id) = #{id} and pw = SHA2(#{pw}, 256) and statusCode = 'USE' and userTypeCode = #{userTypeCode}")
 	public OutUserLoginVO login(InUserLoginVO inUserLoginVO);
 	
